@@ -30,9 +30,6 @@ export const CalculatorSlice = createSlice({
     getResult: (state) => {
       const type = /[^\d*/+()-]/g;
       const pow = /(\d+)\*\*(\d+)/g;
-      if (state.calculation[0] === "*" || "-" || "/" || "+") {
-        state.calculation = state.calculation.substring(1);
-      }
       state.result = state.calculation.replace(type, " ").replace(pow, "Math.pow($1, $2)");
       // eslint-disable-next-line no-eval
       state.result = eval(state.calculation);
